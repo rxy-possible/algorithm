@@ -1,3 +1,5 @@
+import  os
+
 filename = 'students.txt'
 
 def main():
@@ -81,7 +83,36 @@ def search():
     pass
 
 def delete():
-    pass
+    while True:
+        sthdent_id = input("请输入要删除学生的id")
+        if sthdent_id !=' ':
+            if os.path.exists(filename):
+                with open(filename,'r',encoding='utf-8') as file:
+                    sthdent_old  = file.readlines()
+            else:
+                sthdent_old=[]
+            flag = True #标记是否删除
+            if sthdent_old:
+                with open(filename,'w',encoding='utf-8') as wfile:
+                    d={}
+                    for item in sthdent_old:
+                        dict(eval(item)) #将字符串转换成字典
+                        if d['id'] != sthdent_old:
+                            wfile.write(str(d)+'\n')
+                        else:
+                            flag = True
+                    if flag:
+                        print(f'id为{strudent_id}的学生信息已被删除')
+                    else:
+                        print(f'没有找到ID为{student_id}的学生信息')
+            else:
+                print('无学生信息')
+            show()  #删除之后要重新显示学生信息
+            answer=input('是否继续删除？y/n\n')
+            if answer == 'Y' or answer == 'y':
+                continue
+            else:
+                break
 
 def modify():
     pass
