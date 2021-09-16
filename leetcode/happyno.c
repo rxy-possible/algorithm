@@ -46,6 +46,18 @@ bool isHappy(int n)                //最终的结果
 	return false;
 }
 
+bool isHappy1(int n)         //第二种方法省去新申请空间history
+{
+	int slow = n;
+	int fast = n;
+	do{
+	slow = next_n(slow);
+	fast = next_n(fast);
+	fast = next_n(fast);
+	} while (slow != fast);
+	return fast == 1;
+}
+
 int main()
 {
 	bool a = isHappy(20);
